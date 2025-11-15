@@ -1,38 +1,162 @@
-.App {
-  text-align: center;
+/* Basic reset & font */
+:root{
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #0ea5a4; /* teal */
+  --shadow: rgba(15, 23, 42, 0.06);
+  --radius: 12px;
+  --gap: 18px;
+  --container-max: 980px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:28px 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Wrapper */
+.th-container{
+  max-width:var(--container-max);
+  margin:0 auto;
+  padding:28px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Title */
+.th-title{
+  margin:0 0 18px 0;
+  text-align:center;
+  font-size:32px;
+  letter-spacing:-0.4px;
+  font-weight:700;
+  color:#0b1220;
 }
 
-.App-link {
-  color: #61dafb;
+/* Search wrapper */
+.th-search-wrapper{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:22px;
+  width:100%;
+  background:var(--card);
+  border-radius:14px;
+  padding:10px 12px;
+  box-shadow: 0 6px 18px var(--shadow);
+  border: 1px solid rgba(11,18,32,0.04);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.th-search-icon{
+  width:20px;
+  height:20px;
+  color:var(--muted);
+  flex:0 0 20px;
+}
+
+.th-search-input{
+  border:0;
+  outline:0;
+  font-size:16px;
+  flex:1;
+  padding:8px 6px;
+  background:transparent;
+  color:inherit;
+}
+
+.th-search-input::placeholder{ color: #9aa3ad; }
+
+/* Clear button */
+.th-clear-btn{
+  border:0;
+  background:transparent;
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+  color:var(--muted);
+  padding:4px 6px;
+  border-radius:8px;
+}
+.th-clear-btn:hover{ background:rgba(11,18,32,0.03) }
+
+/* Grid layout for cards */
+.th-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+/* Responsive columns */
+@media(min-width:720px){ .th-grid{ grid-template-columns: 1fr 1fr; } }
+@media(min-width:1100px){ .th-grid{ grid-template-columns: 1fr 1fr 1fr; } }
+
+/* Card */
+.th-card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow: 0 10px 25px var(--shadow);
+  border:1px solid rgba(11,18,32,0.04);
+  transition: transform .18s ease, box-shadow .18s ease;
+  outline: none;
+}
+
+.th-card:focus,
+.th-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.12);
+}
+
+/* Card header */
+.th-card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.th-card-title{
+  margin:0;
+  font-size:18px;
+  font-weight:700;
+  color:#071029;
+}
+
+/* Badge */
+.th-badge{
+  background: linear-gradient(135deg, rgba(14,165,164,0.12), rgba(14,165,164,0.08));
+  color: var(--accent);
+  padding:6px 10px;
+  font-size:13px;
+  font-weight:600;
+  border-radius:999px;
+  border:1px solid rgba(14,165,164,0.12);
+}
+
+/* meta text */
+.th-card-meta{
+  margin:6px 0 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* No result */
+.th-no-result{
+  text-align:center;
+  padding:40px 10px;
+  font-size:18px;
+  color:var(--muted);
+}
+
+/* Small utilities */
+@media (max-width:420px){
+  .th-container{ padding:18px 10px; }
+  .th-title{ font-size:24px; }
 }
